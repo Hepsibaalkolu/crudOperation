@@ -7,10 +7,18 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Allow requests from the frontend's URL
+const corsOptions = {
+  origin: 'https://crudoperation-frontend-aeu0.onrender.com', // Frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+};
+
+app.use(cors(corsOptions));
 // Connect to MongoDB Atlas
 // mongoose.connect(process.env.MONGO_URI)
 // mongoose.connect('mongodb+srv://hema123:hema123@cluster0.tgbx8.mongodb.net/TodoList')
 mongoose.connect('mongodb://localhost:27017/Todo')
+// mongoose.connect('https://crudoperation-frontend-aeu0.onrender.com')
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
 
