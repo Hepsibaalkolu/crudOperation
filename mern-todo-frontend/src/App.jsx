@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/todos'; // Change this in deployment
+// const API_URL = 'http://localhost:5000/todos'; // Change this in deployment0
+const API_URL = 'https://crudoperation-backend-xryy.onrender.com';
 
 // console.log("Loaded API URL:", import.meta.env.VITE_API_URL);
 // const API_URL = import.meta.env.VITE_API_URL;
