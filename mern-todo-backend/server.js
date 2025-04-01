@@ -9,7 +9,8 @@ app.use(cors());
 
 // Connect to MongoDB Atlas
 // mongoose.connect(process.env.MONGO_URI)
-mongoose.connect('mongodb+srv://hema123:hema123@cluster0.tgbx8.mongodb.net/TodoList')
+// mongoose.connect('mongodb+srv://hema123:hema123@cluster0.tgbx8.mongodb.net/TodoList')
+mongoose.connect('mongodb://localhost:27017/Todo')
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
 

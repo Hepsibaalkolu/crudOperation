@@ -5,4 +5,4 @@ const TodoSchema = new mongoose.Schema({
   completed: Boolean
 });
 
-module.exports = mongoose.model('TodoList', TodoSchema);
+module.exports = mongoose.model('Todo', TodoSchema);
