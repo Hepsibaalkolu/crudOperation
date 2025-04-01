@@ -4,54 +4,32 @@ import axios from 'axios';
 // const API_URL = 'http://localhost:5000/todos'; // Change this in deployment0
 const API_URL = 'https://crudoperation-backend-xryy.onrender.com';
 
-// console.log("Loaded API URL:", import.meta.env.VITE_API_URL);
-// const API_URL = import.meta.env.VITE_API_URL;
-// console.log("API URL:", import.meta.env.VITE_API_URL);
-// console.log("VITE_API_URL:", import.meta.env.VITE_API_URL, API_URL);
-// console.log("VITE_API_URL:", import.meta.env);
-// console.log("API URL:", API_URL); // Check if it logs correctly
-
-// fetch(`${API_URL}/users`)
-//   .then(response => response.json())
-//   .then(data => console.log(data));
 
 function App() {
   const [todos, setTodos] = useState([]);
   const [text, setText] = useState('');
 
   useEffect(() => {
-    axios.get(API_URL).then(res => setTodos(res.data));
+    axios.get(`${API_URL}/todos`).then(res => setTodos(res.data));
   }, []);
 
-  // useEffect(() => {
-  //   fetch(`${API_URL}/todos`)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       console.log("API Response:", data);
-  //       if (!Array.isArray(data)) {
-  //         console.error("Expected an array but got:", data);
-  //       }
-  //     })
-  //     .catch(err => console.error("Error fetching todos:", err));
-  // }, []);
-  
   
 
   const addTodo = () => {
-    axios.post(API_URL, { text }).then(res => {
+    axios.post(`${API_URL}/todos`, { text }).then(res => {
       setTodos([...todos, res.data]);
       setText('');
     });
   };
 
   const toggleTodo = (id, completed) => {
-    axios.put(`${API_URL}/${id}`, { completed: !completed }).then(res => {
+    axios.put(`${API_URL}/todos${id}`, { completed: !completed }).then(res => {
       setTodos(todos.map(todo => (todo._id === id ? res.data : todo)));
     });
   };
 
   const deleteTodo = (id) => {
-    axios.delete(`${API_URL}/${id}`).then(() => {
+    axios.delete(`${API_URL}/todos/${id}`).then(() => {
       setTodos(todos.filter(todo => todo._id !== id));
     });
   };

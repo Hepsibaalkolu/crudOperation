@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-// require('dotenv').config();
+require('dotenv').config();
 
 const app = express();
 app.use(express.json());
@@ -14,19 +14,20 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-// Connect to MongoDB Atlas
-// mongoose.connect(process.env.MONGO_URI)
-// mongoose.connect('mongodb+srv://hema123:hema123@cluster0.tgbx8.mongodb.net/TodoList')
-mongoose.connect('mongodb://localhost:27017/Todo')
-// mongoose.connect('https://crudoperation-frontend-aeu0.onrender.com')
+
+//https://crudoperation-frontend-aeu0.onrender.com
+// mongoose.connect('mongodb://localhost:27017/Todo')
+//   .then(() => console.log('MongoDB Connected'))
+//   .catch(err => console.log(err));
+
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
-
 // Routes
 const todoRoutes = require('./routes/todoRoutes');
 app.use('/todos', todoRoutes);
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 // console.log("MONGO_URI:", process.env.MONGO_URI);
